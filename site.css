@@ -8,7 +8,7 @@ html, body {
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #999;
+    
 }
 
 p {
@@ -22,6 +22,19 @@ header {
     left: 0;
     width: 100%;
     background-color: #459660;
+    padding: 10px;
+}
+
+h1 {
+    font-size: 3em;
+    margin-top: .5em;
+}
+.banner {
+    max-width: 100%;
+}
+.sub-title {
+    background-color: #fff;
+    font-size: 1.5em;
     padding: 10px;
 }
 
@@ -47,11 +60,15 @@ main {
     background-image: url("images/background.png");
     padding-top: 3em;
     padding-bottom: 3em;
-    min-height: 85%;
+    min-height: 55%;
 }
 
 footer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
     padding: 15px;
+    background-color: #999;
 }
 
 aside, article {
@@ -68,6 +85,10 @@ article {
 
 .columns {
     display: flex;
+}
+
+.contentDiv {
+    padding-bottom: 50px;
 }
 
 @media only screen and (min-width: 768px) {

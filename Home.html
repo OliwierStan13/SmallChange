@@ -4,33 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="site.css" type="text/css">
-    <title>SmallChange</title>
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="Home.js"></script>
+    <script src="LoadHeaderFooter.js"></script>
+    <title>Home</title>
     <style>
-        h1 {
-            font-size: 3em;
-            margin-top: .5em;
-        }
-        .banner {
-            max-width: 100%;
-        }
-        .sub-title {
-            background-color: #fff;
-            font-size: 1.5em;
-            padding: 10px;
-        }
+        
     </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="Home.html">Home</a></li>
-                <li><a href="Trading.html">Trading</a></li>
-                <li><a href="Portfolio.html">Portfolio</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div id="header"></div>
     <main>
         <aside><img src="images/logo.png" alt="fidelity investments logo"></aside>
         <article>
@@ -41,18 +24,11 @@
             </p>
         </article>
     </main>
-    <footer>
-        <nav>
-            <ul>
-                <li><a href="Home.html">Home</a></li>
-                <li><a href="trading.html">Trading</a></li>
-                <li><a href="portfolio.html">Portfolio</a></li>
-            </ul>
-        </nav>
-    </footer>
-    <!-- <script src="index.js" type="text/javascript"></script>  -->
-    <script>
-        
-    </script>
+    <div class="contentDiv">
+        <p>Data to be displayed here.... populated from the JSON file</p>
+        <p>display data here...</p>
+        <p>more info here...</p>
+    </div>
+    <div id="footer"></div>
 </body>
 </html>
