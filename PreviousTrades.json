@@ -1,0 +1,13 @@
+[
+    {"Units":"25", "StockName":"Tesla", "PricePerShare":"10.05", "DateInvested":"3/3/2017", "ProfitLoss":"+250", "ProfitLosspct":"75%", "InitialBuyAmount":"251.25"},
+    {"Units":"13", "StockName":"Ford", "PricePerShare":"42.13", "DateInvested":"4/3/2017", "ProfitLoss":"+113", "ProfitLosspct":"43%", "InitialBuyAmount":"547.69"},
+    {"Units":"30", "StockName":"Apple", "PricePerShare":"136.91", "DateInvested":"5/3/2017", "ProfitLoss":"-23", "ProfitLosspct":"54%", "InitialBuyAmount":"4107.30"},
+    {"Units":"10", "StockName":"Chevron Corp.", "PricePerShare":"69.34", "DateInvested":"6/3/2017", "ProfitLoss":"+34", "ProfitLosspct":"65%", "InitialBuyAmount":"693.40"},
+    {"Units":"12", "StockName":"Amazon", "PricePerShare":"121.76", "DateInvested":"7/3/2017", "ProfitLoss":"+112", "ProfitLosspct":"76%", "InitialBuyAmount":"1461.12"},
+    {"Units":"35", "StockName":"Microsoft", "PricePerShare":"100.34", "DateInvested":"8/3/2017", "ProfitLoss":"-43", "ProfitLosspct":"21%", "InitialBuyAmount":"3511.90"},
+    {"Units":"46", "StockName":"Nvidia", "PricePerShare":"76.54", "DateInvested":"2/3/2017", "ProfitLoss":"+54", "ProfitLosspct":"23%", "InitialBuyAmount":"3520.84"},
+    {"Units":"09", "StockName":"Moderna", "PricePerShare":"98.32", "DateInvested":"10/3/2017", "ProfitLoss":"+25", "ProfitLosspct":"67%", "InitialBuyAmount":"884.88"},
+    {"Units":"18", "StockName":"Nokia", "PricePerShare":"65.59", "DateInvested":"11/3/2017", "ProfitLoss":"+56", "ProfitLosspct":"57%", "InitialBuyAmount":"1180.62"},
+    {"Units":"13", "StockName":"Boeing", "PricePerShare":"118.82", "DateInvested":"12/3/2017", "ProfitLoss":"+78", "ProfitLosspct":"32%", "InitialBuyAmount":"1544.66"},
+    {"Units":"22", "StockName":"Disney", "PricePerShare":"65.90", "DateInvested":"13/3/2017", "ProfitLoss":"-10", "ProfitLosspct":"09%", "InitialBuyAmount":"1449.80"}
+]
