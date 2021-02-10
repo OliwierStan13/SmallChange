@@ -1,0 +1,53 @@
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+    margin: 20px;
+    background-color: white;
+    padding-bottom: 15px;;
+}
+
+.container {
+    padding: 15px;
+}
+
+body {
+    background-image: url("images/background.png");
+    display: block;   
+}
+
+#portfolioHeader {
+    font-weight: bold;
+    padding-bottom: 5px;
+}
+
+#graphsheader {
+    font-weight: bold;
+    padding-bottom: 15px;
+}
+
+#tableData {
+    font-style: normal;
+}
+
+.column {
+    float: left;
+    width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#chartdiv {
+    width: 100%;
+    height: 400px;
+}
+
+#chartdiv2 {
+    width: 100%;
+    height: 400px;
+}

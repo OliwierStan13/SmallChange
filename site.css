@@ -3,7 +3,9 @@
 }
 
 html, body {
-    height: 100%;
+    /*height: 100%;*/
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 body {
@@ -59,7 +61,7 @@ main {
     display: block;
     background-image: url("images/background.png");
     padding-top: 3em;
-    padding-bottom: 3em;
+    /*padding-bottom: 3em;*/
     min-height: 90%;
 }
 
@@ -69,7 +71,7 @@ footer {
     width: 100%;
     padding: 20px;
     background-color: #999;
-    position: absolute;
+    /*position: absolute;*/
 }
 
 aside, article {
@@ -94,12 +96,12 @@ article {
 
 table {
     text-align: center;
-    width: 70%;
+    /*width: 70%;*/
 }
 th, td {
-    border-bottom: 1px solid #ddd;
+    /*border-bottom: 1px solid #ddd;
     font-weight: bold;
-    height: 28px;
+    height: 28px;*/
 }
 tr:hover {
     background-color: #f5f5f5;
