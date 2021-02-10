@@ -1,0 +1,84 @@
+{
+    "portfolio":  {
+       "asset1": {
+          "asset_name": "Tesla",
+          "asset_type": "Stock",
+          "date_purchased": "03/01/2021",
+          "price_paid": "10.05",
+          "price_now": "11.07",
+          "profit" : "+3.2"
+       },
+       "asset2": {
+          "asset_name": "Ford",
+          "asset_type": "Stock",
+          "date_purchased": "03/01/2021",
+          "price_paid": "42.13",
+          "price_now": "45.67",
+          "profit" : "+2.5"
+       },
+       "asset3": {
+          "asset_name": "Apple",
+          "asset_type": "Bond",
+          "date_purchased": "03/01/2021",
+          "price_paid": "136.91",
+          "price_now": "144.32",
+          "profit" : "+3.2"
+       },
+       "asset4": {
+          "asset_name": "Chevron Corp.",
+          "asset_type": "Stock",
+          "date_purchased": "05/01/2021",
+          "price_paid": "69.34",
+          "price_now": "64.98",
+          "profit" : "-2.9"
+       },
+       "asset5": {
+          "asset_name": "Amazon",
+          "asset_type": "Bond",
+          "date_purchased": "06/01/2021",
+          "price_paid": "121.76",
+          "price_now": "140.32",
+          "profit" : "+7.9"
+       },
+       "asset6": {
+          "asset_name": "Microsoft",
+          "asset_type": "Bond",
+          "date_purchased": "14/01/2021",
+          "price_paid": "100.34",
+          "price_now": "99.94",
+          "profit" : "-0.5"
+       },
+       "asset7": {
+          "asset_name": "Nvidia",
+          "asset_type": "Stock",
+          "date_purchased": "17/01/2021",
+          "price_paid": "76.54",
+          "price_now": "66.26",
+          "profit" : "-12.1"
+       },
+       "asset8": {
+          "asset_name": "Moderna",
+          "asset_type": "Stock",
+          "date_purchased": "06/01/2021",
+          "price_paid": "98.32",
+          "price_now": "126.21",
+          "profit" : "+24.7"
+       },
+       "asset9": {
+          "asset_name": "Nokia",
+          "asset_type": "Bond",
+          "date_purchased": "01/02/2021",
+          "price_paid": "65.59",
+          "price_now": "63.94",
+          "profit" : "-0.9"
+       },
+       "asset10": {
+          "asset_name": "Boeing",
+          "asset_type": "Bond",
+          "date_purchased": "03/02/2021",
+          "price_paid": "118.82",
+          "price_now": "119.07",
+          "profit" : "+0.3"
+       }
+    }
+ }

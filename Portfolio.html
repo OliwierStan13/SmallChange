@@ -4,35 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="site.css" type="text/css">
+    <link rel="stylesheet" href="portfolio.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="LoadHeaderFooter.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="Portfolio.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/themes/material.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
     <title>Portfolio</title>
     
-    <style>
-       
-    </style>
 </head>
 <body>
     <div id="header"></div>
     <main>
         <aside><img src="images/logo.png" alt="fidelity investments logo"></aside>
-        <article>
-            
+        <article>  
             <h1>View your portfolio</h1>
             <p class="sub-title">
                 This page allows you to view all your portfolio details!
             </p>
         </article>
     </main>
-    <div class="contentDiv">
-        <p>Data to be displayed here.... populated from the JSON file</p>
-        <p>display data here...</p>
-        <p>more info here...</p>
+    <div class="card">
+        <div class="container">
+            <h2 id="portfolioHeader">Portfolio details</h2>
+            <div id="tableContent">
+                <table id="myTable" class="stripe"> 
+                    <thead id="tableHeadings">
+                        <th>Asset Name</th><th>Asset Type</th><th>Date Purchased</th><th>Price paid</th><th>Price now</th><th>Net Profit (%)</th>
+                    </thead>
+                    <tbody id="tableData">
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
+
+    <div class="card">
+        <div class="container">
+            <h2 id="graphsheader">Some more insight</h2>
+            <div id="graphContent">
+                <div class="row">
+                    <div class="column">
+                        <h4 style="text-align: center;">Top 5 stock (best profit in %)</h4>
+                        <div id="chartdiv"></div>
+                    </div>
+
+                    <div class="column">
+                        <h4 style="text-align: center;">Amazon stock price comparison (2020 vs 2021)</h4>
+                        <div id="chartdiv2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div id="footer"></div>
-    <!-- <script src="index.js" type="text/javascript"></script>  -->
-    <script>
-        
-    </script>
 </body>
 </html>

@@ -19,20 +19,20 @@
         <aside><img src="images/logo.png" alt="fidelity investments logo"></aside>
         <article>
             
-            <h1>Welcome to SmallChange</h1>
+            <h1>Previous Trades</h1>
             <p class="sub-title">
-                This is the beginning of your investing journey!
+                Below is a list of previous trades made.
             </p>
             <table id='table'> 
                 <!-- HEADING FORMATION -->
                 <tr> 
                     <th onclick="sortTable(0)">Units</th> 
-                    <th>Stock Name</th> 
-                    <th>Price Per Share</th> 
-                    <th>Date Invested</th>
-                    <th>Profit/Loss</th> 
-                    <th>Profit/Loss %</th> 
-                    <th>Initial Buy Amount</th>  
+                    <th onclick="sortTable(1)">Stock Name</th> 
+                    <th onclick="sortTable(2)">Price Per Share</th> 
+                    <th onclick="sortTable(3)">Date Invested</th>
+                    <th onclick="sortTable(4)">Profit/Loss</th> 
+                    <th onclick="sortTable(5)">Profit/Loss %</th> 
+                    <th onclick="sortTable(6)">Initial Buy Amount</th>  
                 </tr> 
             
         </article>
@@ -68,16 +68,6 @@
                 x = rows[i].getElementsByTagName("TD")[n];
                 y = rows[i + 1].getElementsByTagName("TD")[n];
                 console.log(typeof x, typeof y);
-                // x1 = x.split("/").reverse().join("");
-                // // x = x.reverse();
-                // // x = (x[2] + x[1] + x[0]);
-                // x1 = parseInt(x1);
-                // //console.log(Number(x));
-                // y1 = y.split("/").reverse().join("");
-                // // y = y.reverse();
-                // // y = (y[2] + y[1] + y[0]);
-                // y1 = parseInt(y1);
-                //console.log(Number(y));
                 /* Check if the two rows should switch place,
                 based on the direction, asc or desc: */
                 if (dir == "asc") {
