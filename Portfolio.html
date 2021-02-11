@@ -31,6 +31,19 @@
     <div class="card">
         <div class="container">
             <h2 id="portfolioHeader">Portfolio details</h2>
+            
+            <div id="sortingBox">
+                <a href="javascript:void(0)" id="showBtn">Manual data sort</a>
+                <div id="hiddenDiv" style="display: none; width: 15%;">
+                    <div id="assetNames">
+                        <table id="assetTable">
+                            <thead id="assetNameToSort"><th>Asset Names</th></thead>
+                            <tbody id="namesToAdd"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
             <div id="tableContent">
                 <table id="myTable" class="stripe"> 
                     <thead id="tableHeadings">

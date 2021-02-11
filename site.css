@@ -109,7 +109,7 @@ table {
 }
 th, td {
     border-bottom: 1px solid #ddd;
-    font-weight: bold;
+    /*font-weight: bold;*/
     height: 28px;
 }
 tr:hover {

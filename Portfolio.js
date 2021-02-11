@@ -1,224 +1,197 @@
 $(document).ready(function () { 
+    //load data table
     $('#myTable').DataTable();
-    // FETCHING DATA FROM JSON FILE 
-    $.getJSON("portfolioData.json",  function (data) { 
-        
-        //get table headings
-        var thead;
-        for (var headers in data[0]) {
-            thead += "<th>" + headers + "</th>";
-        }
-        //thead+="</tr>";
-        updateTableHeading(thead);
 
-        var tbody;
-        for (var item in data) {
-            tbody += "<tr>";
-            var dataObj = data[item];
-            for (var val in dataObj){
-                tbody += "<td>" + dataObj[val] + "</td>";
-            }
-            tbody += "</tr>";
-        }
-        //updateTableData(tbody);
+    //activate div toggle - show/hide on button click
+    $("#showBtn").click(function(){
+        $("#hiddenDiv").toggle('slow');
+    });
+
+    $.getJSON("portfolioData.json",  function (data) { 
         updateTableData(data);
+        populateManualSort(data);
 
     }); 
 
-
-    function updateTableHeading(headings){
-        console.log(headings);
-        //$('#tableHeadings').append(headings); 
+    function populateManualSort(data){
+        var length = Object.keys(data.portfolio).length;
+        for(var i = 1; i < length+1; i++) 
+        {
+            var asset = data.portfolio['asset'+i];
+            $('#namesToAdd').append("<tr><td>" + asset.asset_name + "</td></tr>");
+        }
     }
-
+    
     function updateTableData(data){
-        //console.log(tbldata);
-        //$('#tableData').append(tbldata); 
         $("#myTable").DataTable().clear();
         var length = Object.keys(data.portfolio).length;
-        for(var i = 1; i < length+1; i++) {
-        var customer = data.portfolio['asset'+i];
-
-        // You could also use an ajax property on the data table initialization
-        $('#myTable').dataTable().fnAddData( [
-            customer.asset_name,
-            customer.asset_type,
-            customer.date_purchased,
-            "€" + customer.price_paid,
-            "€" + customer.price_now,
-            customer.profit
-        ]);
+        for(var i = 1; i < length+1; i++) 
+        {
+            var asset = data.portfolio['asset'+i];
+            $('#myTable').dataTable().fnAddData( [
+                asset.asset_name,
+                asset.asset_type,
+                asset.date_purchased,
+                "€" + asset.price_paid,
+                "€" + asset.price_now,
+                asset.profit
+            ]);
+        }
     }
-    }
 
-    //$('#myTable').DataTable();
 
+    $("#assetNameToSort").click(function () {
+        //sort table
+        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0, n = 0;
+        table = document.getElementById("assetTable");
+        switching = true;
+        dir = "asc";
+        while (switching) 
+        {
+            switching = false;
+            rows = table.rows;
+     
+            for (i = 1; i < (rows.length - 1); i++) 
+            {
+                shouldSwitch = false;
+                x = rows[i].getElementsByTagName("TD")[n];
+                y = rows[i + 1].getElementsByTagName("TD")[n];
+ 
+                if (dir == "asc") 
+                {   
+                    //compare items and swap if value is higher and tnen break
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                    shouldSwitch = true;
+                    break;
+                    }
+                } 
+                else if (dir == "desc") 
+                {
+                    //compare items and swap if value is lower and tnen break
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                    shouldSwitch = true;
+                    break;
+                    }
+                }
+            }
+            if (shouldSwitch) //ascending sort
+            {
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+                switchcount ++;
+            } 
+            else //descending sort
+            {
+                if (switchcount == 0 && dir == "asc") {
+                    dir = "desc";
+                    switching = true;
+                }
+            }
+        }
+    });
+
+    //charts diaplyed
     am4core.ready(function() {
 
-        // Themes begin
         am4core.useTheme(am4themes_material);
         am4core.useTheme(am4themes_animated);
-        // Themes end
         
-        // Create chart instance
-        var chart = am4core.create("chartdiv", am4charts.XYChart);
+        var chart = am4core.create('chartdiv', am4charts.XYChart)
+        chart.colors.step = 2;
         
-        // Add data
-        chart.data = [{
-          "stock": "Moderna",
-          "profit": 24.7
-        }, {
-          "stock": "Amazon",
-          "profit": 7.9
-        }, {
-          "stock": "Apple",
-          "profit": 3.2
-        }, {
-          "stock": "Tesla",
-          "profit": 3.2
-        }, {
-          "stock": "Ford",
-          "profit": 2.5
-        }];
+        chart.legend = new am4charts.Legend()
+        chart.legend.position = 'top'
+        chart.legend.paddingBottom = 20
+        chart.legend.labels.template.maxWidth = 95
         
-        // Create axes
+        var xAxis = chart.xAxes.push(new am4charts.CategoryAxis())
+        xAxis.dataFields.category = 'category'
+        xAxis.renderer.cellStartLocation = 0.1
+        xAxis.renderer.cellEndLocation = 0.9
+        xAxis.renderer.grid.template.location = 0;
         
-        var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-        categoryAxis.dataFields.category = "stock";
-        categoryAxis.renderer.grid.template.location = 0;
-        categoryAxis.renderer.minGridDistance = 30;
+        var yAxis = chart.yAxes.push(new am4charts.ValueAxis());
+        yAxis.min = 0;
         
-        categoryAxis.renderer.labels.template.adapter.add("dy", function(dy, target) {
-          if (target.dataItem && target.dataItem.index & 2 == 2) {
-            return dy + 25;
-          }
-          return dy;
-        });
+        function createSeries(value, name) {
+            var series = chart.series.push(new am4charts.ColumnSeries())
+            series.dataFields.valueY = value
+            series.dataFields.categoryX = 'category'
+            series.name = name
         
-        var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+            series.events.on("hidden", arrangeColumns);
+            series.events.on("shown", arrangeColumns);
         
-        // Create series
-        var series = chart.series.push(new am4charts.ColumnSeries());
-        series.dataFields.valueY = "profit";
-        series.dataFields.categoryX = "stock";
-        series.name = "Profit";
-        series.columns.template.tooltipText = "{categoryX}: [bold]{valueY}[/]";
-        series.columns.template.fillOpacity = .8;
+            var bullet = series.bullets.push(new am4charts.LabelBullet())
+            bullet.interactionsEnabled = false
+            bullet.dy = 30;
+            bullet.label.text = '{valueY}'
+            bullet.label.fill = am4core.color('#ffffff')
         
-        var columnTemplate = series.columns.template;
-        columnTemplate.strokeWidth = 2;
-        columnTemplate.strokeOpacity = 1;
+            return series;
+        }
         
-        }); // end am4core.ready()
+        chart.data = [
+            {
+                category: 'Moderna',
+                first: 98.32,
+                second: 126.21
+            },
+            {
+                category: 'Amazon',
+                first: 121.76,
+                second: 140.32
+            },
+            {
+                category: 'Apple',
+                first: 136.91,
+                second: 144.32
+            }
+        ]
         
-
-
-
-        am4core.ready(function() {
-
-          // Themes begin
-          am4core.useTheme(am4themes_material);
-          am4core.useTheme(am4themes_animated);
-          // Themes end
-          
-          
-          
-          var chart = am4core.create('chartdiv', am4charts.XYChart)
-          chart.colors.step = 2;
-          
-          chart.legend = new am4charts.Legend()
-          chart.legend.position = 'top'
-          chart.legend.paddingBottom = 20
-          chart.legend.labels.template.maxWidth = 95
-          
-          var xAxis = chart.xAxes.push(new am4charts.CategoryAxis())
-          xAxis.dataFields.category = 'category'
-          xAxis.renderer.cellStartLocation = 0.1
-          xAxis.renderer.cellEndLocation = 0.9
-          xAxis.renderer.grid.template.location = 0;
-          
-          var yAxis = chart.yAxes.push(new am4charts.ValueAxis());
-          yAxis.min = 0;
-          
-          function createSeries(value, name) {
-              var series = chart.series.push(new am4charts.ColumnSeries())
-              series.dataFields.valueY = value
-              series.dataFields.categoryX = 'category'
-              series.name = name
-          
-              series.events.on("hidden", arrangeColumns);
-              series.events.on("shown", arrangeColumns);
-          
-              var bullet = series.bullets.push(new am4charts.LabelBullet())
-              bullet.interactionsEnabled = false
-              bullet.dy = 30;
-              bullet.label.text = '{valueY}'
-              bullet.label.fill = am4core.color('#ffffff')
-          
-              return series;
-          }
-          
-          chart.data = [
-              {
-                  category: 'Moderna',
-                  first: 98.32,
-                  second: 126.21
-              },
-              {
-                  category: 'Amazon',
-                  first: 121.76,
-                  second: 140.32
-              },
-              {
-                  category: 'Apple',
-                  first: 136.91,
-                  second: 144.32
-              }
-          ]
-          
-          
-          createSeries('first', 'Price at purchase');
-          createSeries('second', 'Price now');
-          
-          function arrangeColumns() {
-          
-              var series = chart.series.getIndex(0);
-          
-              var w = 1 - xAxis.renderer.cellStartLocation - (1 - xAxis.renderer.cellEndLocation);
-              if (series.dataItems.length > 1) {
-                  var x0 = xAxis.getX(series.dataItems.getIndex(0), "categoryX");
-                  var x1 = xAxis.getX(series.dataItems.getIndex(1), "categoryX");
-                  var delta = ((x1 - x0) / chart.series.length) * w;
-                  if (am4core.isNumber(delta)) {
-                      var middle = chart.series.length / 2;
-          
-                      var newIndex = 0;
-                      chart.series.each(function(series) {
-                          if (!series.isHidden && !series.isHiding) {
-                              series.dummyData = newIndex;
-                              newIndex++;
-                          }
-                          else {
-                              series.dummyData = chart.series.indexOf(series);
-                          }
-                      })
-                      var visibleCount = newIndex;
-                      var newMiddle = visibleCount / 2;
-          
-                      chart.series.each(function(series) {
-                          var trueIndex = chart.series.indexOf(series);
-                          var newIndex = series.dummyData;
-          
-                          var dx = (newIndex - trueIndex + middle - newMiddle) * delta
-          
-                          series.animate({ property: "dx", to: dx }, series.interpolationDuration, series.interpolationEasing);
-                          series.bulletsContainer.animate({ property: "dx", to: dx }, series.interpolationDuration, series.interpolationEasing);
-                      })
-                  }
-              }
-          }
-          
-          }); // end am4core.ready()
+        
+        createSeries('first', 'Price at purchase');
+        createSeries('second', 'Price now');
+        
+        function arrangeColumns() {
+        
+            var series = chart.series.getIndex(0);
+        
+            var w = 1 - xAxis.renderer.cellStartLocation - (1 - xAxis.renderer.cellEndLocation);
+            if (series.dataItems.length > 1) {
+                var x0 = xAxis.getX(series.dataItems.getIndex(0), "categoryX");
+                var x1 = xAxis.getX(series.dataItems.getIndex(1), "categoryX");
+                var delta = ((x1 - x0) / chart.series.length) * w;
+                if (am4core.isNumber(delta)) {
+                    var middle = chart.series.length / 2;
+        
+                    var newIndex = 0;
+                    chart.series.each(function(series) {
+                        if (!series.isHidden && !series.isHiding) {
+                            series.dummyData = newIndex;
+                            newIndex++;
+                        }
+                        else {
+                            series.dummyData = chart.series.indexOf(series);
+                        }
+                    })
+                    var visibleCount = newIndex;
+                    var newMiddle = visibleCount / 2;
+        
+                    chart.series.each(function(series) {
+                        var trueIndex = chart.series.indexOf(series);
+                        var newIndex = series.dummyData;
+        
+                        var dx = (newIndex - trueIndex + middle - newMiddle) * delta
+        
+                        series.animate({ property: "dx", to: dx }, series.interpolationDuration, series.interpolationEasing);
+                        series.bulletsContainer.animate({ property: "dx", to: dx }, series.interpolationDuration, series.interpolationEasing);
+                    })
+                }
+            }
+        }
+        
+    });
 
 
 
