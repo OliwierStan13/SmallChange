@@ -9,7 +9,28 @@
     <script src="LoadHeaderFooter.js"></script>
     <title>Home</title>
     <style>
-        
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            border-radius: 5px;
+            margin: 20px;
+            background-color: white;
+            padding-bottom: 15px;
+        }
+
+        .container {
+            padding: 15px;
+        }
+
+        body {
+            background-image: url("images/background.png");
+            display: block;   
+        }
+
+        #portfolioHeader {
+            font-weight: bold;
+            padding-bottom: 5px;
+        }
     </style>
 </head>
 <body>
@@ -24,10 +45,31 @@
             </p>
         </article>
     </main>
-    <div class="contentDiv">
-        <p>Data to be displayed here.... populated from the JSON file</p>
-        <p>display data here...</p>
-        <p>more info here...</p>
+    <div class="card">
+        <div class="container">
+            <h2 id="portfolioHeader">Project Overview</h2>
+            <p>Devs: Stephen Mac Partlin & Oliwier Stanislawczyk &nbsp; Advisor: Derry Bradley &nbsp; PO: Louise O'Donovan</p><br/>
+            <p>
+                For this Small Change project we explored the main web development 
+                languages of HTML, JavaScript and CSS. We developed tasks for use 
+                case items UC-04 (<a href="Portfolio.html">Portfolio page</a>) and
+                UC-05 (<a href="Trading.html">Trading page</a>).
+                We completed this small website alongside the training material on
+                Pluralsight, which gave us a better understanding of these core 
+                web development practices. We will use this experience as a learning 
+                opportunity and how to effectively work as a team.
+            </p><br/>
+            <p>
+                Also as part of this project we worked as a team and used a code 
+                collaboration tool called GitHub. GitHub gave us a great opportunity
+                to use a widely popular version control tool and that was how we kept the
+                code maintained between the team. Also as part of this we learned key 
+                values of teamwork and learned quite a bit from one another in terms of
+                good practices and good habits when it comes to web design. As a team, we
+                worked efficiently and tried to help each other out where possible. 
+            </p>
+
+        </div>
     </div>
     <div id="footer"></div>
 </body>
